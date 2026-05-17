@@ -6,9 +6,9 @@ This frontend is a React + Vite application for uploading CVs, viewing AI-extrac
 
 - Login and registration flow
 - Protected routes for authenticated users
-- CV upload page with PDF/DOCX support
+- CV upload page with PDF, DOCX, and text support
 - Job matching page with AI-driven scoring and advice
-- Modern UI using Tailwind CSS
+- Responsive UI built with Tailwind CSS
 
 ## Run locally
 
@@ -33,6 +33,11 @@ Open the app in a browser at the URL printed by Vite.
 - `npm run build` - build production assets
 - `npm run preview` - preview production build locally
 - `npm run lint` - run ESLint checks
+
+## CI/CD
+
+This project is included in the repository-level GitHub Actions workflow at `.github/workflows/ci.yml`.
+The workflow installs dependencies, lints the frontend, and creates a production build.
 
 ## Notes
 

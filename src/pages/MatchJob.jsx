@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
+import Container from '../components/Container';
+import BackButton from '../components/BackButton';
 
 function MatchJob() {
     const [jobTitle, setJobTitle] = useState('');
@@ -42,15 +44,19 @@ function MatchJob() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center p-4">
+        <Container>
+            <div className="mb-4">
+                <BackButton />
+            </div>
             <h1 className="text-3xl font-bold mb-4">Match Your CV to a Job</h1>
             <p className="mb-6 text-slate-400">
                 Enter the job title and description, then compare them against your uploaded CV.
             </p>
 
             {error && <div className="mb-4 rounded-2xl bg-red-600/90 p-3 text-sm">{error}</div>}
+            {result && <div className="mb-4 rounded-2xl bg-emerald-600/90 p-3 text-sm flex items-center gap-2">✓ Match job successfully</div>}
 
-            <div className="w-full max-w-3xl">
+            <div className="w-full">
                 <input
                     type="text"
                     placeholder="Job Title"
@@ -107,7 +113,7 @@ function MatchJob() {
                     </div>
                 </div>
             )}
-        </div>
+        </Container>
     );
 }
 

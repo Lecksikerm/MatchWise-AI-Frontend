@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
+import Container from '../components/Container';
+import BackButton from '../components/BackButton';
 
 function UploadCV() {
     const [file, setFile] = useState(null);
@@ -36,8 +38,11 @@ function UploadCV() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center px-4 py-12">
-            <div className="w-full max-w-3xl rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-xl shadow-slate-950/20">
+        <Container>
+            <div className="mb-4">
+                <BackButton />
+            </div>
+            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 sm:p-8 shadow-xl shadow-slate-950/20">
                 <h1 className="text-3xl font-bold mb-6">Upload Your CV</h1>
                 <p className="mb-6 text-slate-400">
                     Upload a PDF or DOCX file and get a quick skill extraction plus an AI summary.
@@ -55,6 +60,7 @@ function UploadCV() {
                 </label>
 
                 {error && <div className="mt-4 rounded-2xl bg-red-600/90 p-3 text-sm">{error}</div>}
+                {result && <div className="mt-4 rounded-2xl bg-emerald-600/90 p-3 text-sm flex items-center gap-2">✓ Upload successful</div>}
 
                 <button
                     type="button"
@@ -104,7 +110,7 @@ function UploadCV() {
                     </div>
                 )}
             </div>
-        </div>
+        </Container>
     );
 }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="520" rx="24" fill="#0f172a" />
+  <g transform="translate(56,56)">
+    <rect x="0" y="0" width="320" height="200" rx="12" fill="#0b1220" stroke="#1f2937" />
+    <rect x="340" y="0" width="320" height="200" rx="12" fill="#071024" stroke="#1f2937" />
+
+    <g transform="translate(12,14)">
+      <rect x="0" y="0" width="296" height="28" rx="6" fill="#0b1220" />
+      <rect x="0" y="44" width="220" height="14" rx="6" fill="#0b1220" />
+      <rect x="0" y="70" width="260" height="14" rx="6" fill="#0b1220" />
+      <rect x="0" y="96" width="160" height="14" rx="6" fill="#0b1220" />
+    </g>
+
+    <g transform="translate(352,14)">
+      <rect x="0" y="0" width="296" height="28" rx="6" fill="#071024" />
+      <rect x="0" y="44" width="220" height="14" rx="6" fill="#071024" />
+      <rect x="0" y="70" width="260" height="14" rx="6" fill="#071024" />
+      <rect x="0" y="96" width="160" height="14" rx="6" fill="#071024" />
+    </g>
+
+    <circle cx="160" cy="280" r="90" fill="#062235" stroke="#1f2937" />
+    <path d="M120 260 C130 230, 190 230, 200 260" stroke="#22c55e" stroke-width="6" fill="none" stroke-linecap="round" />
+  </g>
+</svg>
