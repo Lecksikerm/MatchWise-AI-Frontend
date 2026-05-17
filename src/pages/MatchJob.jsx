@@ -14,6 +14,22 @@ function MatchJob() {
     const cvId = localStorage.getItem('cvId');
     const [error, setError] = useState('');
 
+    const getScoreState = (score) => {
+        if (score >= 80) return { label: 'Strong fit', color: 'text-emerald-400', badge: 'bg-emerald-600/90' };
+        if (score >= 50) return { label: 'Moderate fit', color: 'text-amber-400', badge: 'bg-amber-600/90' };
+        return { label: 'Low fit', color: 'text-red-400', badge: 'bg-red-600/90' };
+    };
+
+    const getResultStatus = () => {
+        if (!result?.match) return { message: 'Match analysis complete', badge: 'bg-slate-600/90' };
+        const score = result.match.score ?? 0;
+        const { label, badge } = getScoreState(score);
+        return { message: `${label} — score ${score}%`, badge };
+    };
+
+    const scoreState = getScoreState(result?.match?.score ?? 0);
+    const resultStatus = getResultStatus();
+
     const handleMatch = async () => {
         if (!cvId) {
             setError('Please upload a CV before matching a job.');
@@ -54,7 +70,11 @@ function MatchJob() {
             </p>
 
             {error && <div className="mb-4 rounded-2xl bg-red-600/90 p-3 text-sm">{error}</div>}
-            {result && <div className="mb-4 rounded-2xl bg-emerald-600/90 p-3 text-sm flex items-center gap-2">✓ Match job successfully</div>}
+            {result && (
+                <div className={`mb-4 rounded-2xl p-3 text-sm flex items-center gap-2 ${resultStatus.badge}`}>
+                    ✓ {resultStatus.message}
+                </div>
+            )}
 
             <div className="w-full">
                 <input
@@ -91,7 +111,7 @@ function MatchJob() {
                     <div className="mt-6 grid gap-4 md:grid-cols-2">
                         <div className="rounded-3xl bg-slate-900 p-4">
                             <h3 className="text-lg font-semibold">Score</h3>
-                            <p className="mt-2 text-4xl font-bold text-green-400">{result.match?.score ?? 0}%</p>
+                            <p className={`mt-2 text-4xl font-bold ${scoreState.color}`}>{result.match?.score ?? 0}%</p>
                         </div>
                         <div className="rounded-3xl bg-slate-900 p-4">
                             <h3 className="text-lg font-semibold">Skill gap</h3>
@@ -109,6 +129,16 @@ function MatchJob() {
                         <p className="mt-2 text-sm text-slate-300">{result.match?.aiAdvice?.matchSummary || 'No advice available.'}</p>
                         {result.match?.aiAdvice?.applicationAdvice && (
                             <p className="mt-3 text-sm text-slate-300">{result.match.aiAdvice.applicationAdvice}</p>
+                        )}
+                        {result.match?.recommendations?.length > 0 && (
+                            <div className="mt-4 space-y-2">
+                                <h4 className="text-sm font-semibold text-slate-200">Recommendations</h4>
+                                <ul className="list-disc list-inside text-slate-400 text-sm space-y-1">
+                                    {result.match.recommendations.map((rec, index) => (
+                                        <li key={index}>{rec}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         )}
                     </div>
                 </div>
